@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shops", "Shops\Shops.csproj", "{8ECC031F-D2A2-48A8-8E86-637BC5B64ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shops", "Shops\Shops.csproj", "{8ECC031F-D2A2-48A8-8E86-637BC5B64ED6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{BC48ED93-0D61-4B17-BAFF-12DA62C5386D}"
+	ProjectSection(SolutionItems) = preProject
+		Shopss.sql = Shopss.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
