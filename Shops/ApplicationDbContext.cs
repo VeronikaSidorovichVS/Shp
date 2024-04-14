@@ -11,7 +11,7 @@ namespace Shops
         {
 
         }
-        public DbSet<Models.Type> types { get; set; }
+        public DbSet<Typee> types { get; set; }
         public DbSet<Role> roles { get; set; }
         public DbSet<ProductsInBasket> productsInBaskets { get; set; }
         public DbSet<Product> product { get; set; }
