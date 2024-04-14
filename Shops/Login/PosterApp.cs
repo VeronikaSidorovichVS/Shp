@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Npgsql;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shops.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 public class PosterApp
 {
@@ -38,12 +37,13 @@ public class PosterApp
         }
     }
 
+    [HttpPost]
     private static void SignUp()
     {
         Console.Write("Enter your email: ");
         var email = Console.ReadLine();
 
-        //Check if email already exists
+        // Check if email already exists
         if (CheckEmailExists(email))
         {
             Console.WriteLine("Email already exists. Please choose a different email.");
@@ -53,7 +53,7 @@ public class PosterApp
         Console.Write("Enter your password: ");
         var password = Console.ReadLine();
 
-        //Save user to database
+        // Save user to database
         using (var connection = new SqlConnection(ConnectionString))
         {
             connection.Open();
@@ -66,12 +66,10 @@ public class PosterApp
             }
         }
 
-        Console.WriteLine("Sign up successful!");
-        //Proceed to the website or perform other actions
+       
     }
 
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    [HttpPost]
     private static void Login()
     {
         Console.Write("Enter your email: ");
@@ -80,7 +78,7 @@ public class PosterApp
         Console.Write("Enter your password: ");
         var password = Console.ReadLine();
 
-        //Check if email and password match
+        // Check if email and password match
         if (!CheckCredentials(email, password))
         {
             Console.WriteLine("Invalid email or password. Login failed.");
@@ -88,9 +86,10 @@ public class PosterApp
         }
 
         Console.WriteLine("Login successful!");
-        //Proceed to the website or perform other actions
+        // Proceed to the website or perform other actions
     }
 
+    [HttpPost]
     private static bool CheckEmailExists(string email)
     {
         using (var connection = new SqlConnection(ConnectionString))
@@ -105,7 +104,7 @@ public class PosterApp
             }
         }
     }
-
+    [HttpPost]
     private static bool CheckCredentials(string email, string password)
     {
         using (var connection = new SqlConnection(ConnectionString))
@@ -121,12 +120,13 @@ public class PosterApp
             }
         }
     }
+    [HttpPost]
     private static void AddToCart(int productId, int userId)
     {
-        //Check if the user already has the product in the cart
+        // Check if the user already has the product in the cart
         if (CheckProductInCart(productId, userId))
         {
-            //Increase the quantity by 1
+            // Increase the quantity by 1
             UpdateCartItemQuantity(productId, userId, 1);
         }
         else
@@ -148,7 +148,7 @@ public class PosterApp
 
         Console.WriteLine("Product added to cart.");
     }
-
+    [HttpPost]
     private static void RemoveFromCart(int productId, int userId)
     {
         // Remove the product from the cart
@@ -166,10 +166,10 @@ public class PosterApp
 
         Console.WriteLine("Product removed from cart.");
     }
-
+    [HttpPost]
     private static void DeleteUser(int userId)
     {
-        //Remove the user from the database
+        // Remove the user from the database
         using (var connection = new SqlConnection(ConnectionString))
         {
             connection.Open();
@@ -183,20 +183,20 @@ public class PosterApp
 
         Console.WriteLine("User deleted.");
     }
-
+    [HttpPost]
     private static void PlaceOrder(int userId)
     {
-        //Get the cart items for the user
+        // Get the cart items for the user
         var cartItems = GetCartItems(userId);
 
-        //Check if the cart is empty
+        // Check if the cart is empty
         if (cartItems.Count == 0)
         {
             Console.WriteLine("Cart is empty. Cannot place order.");
             return;
         }
 
-        //Save the order to the database
+        // Save the order to the database
         using (var connection = new SqlConnection(ConnectionString))
         {
             connection.Open();
@@ -207,7 +207,7 @@ public class PosterApp
                 command.Parameters.AddWithValue("@OrderDate", DateTime.Now);
                 var orderId = (int)(decimal)command.ExecuteScalar();
 
-                //Save the order items to the database
+                // Save the order items to the database
                 query = "INSERT INTO OrderItems (OrderId, ProductId, Quantity) VALUES (@OrderId, @ProductId, @Quantity)";
                 foreach (var cartItem in cartItems)
                 {
@@ -222,11 +222,12 @@ public class PosterApp
             }
         }
 
-        //Clear the cart
+        // Clear the cart
         ClearCart(userId);
 
         Console.WriteLine("Order placed successfully!");
     }
+    [HttpPost]
     private static List<Product> GetCartItems(int userId)
     {
         var cartItems = new List<Product>();
@@ -234,7 +235,7 @@ public class PosterApp
         using (var connection = new SqlConnection(ConnectionString))
         {
             connection.Open();
-            var query = "SELECT ProductId, Quantity FROM Product WHERE UserId = @UserId";
+            var query = "SELECT ProductId, Quantity FROM CartItems WHERE UserId = @UserId";
             using (var command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@UserId", userId);
@@ -253,7 +254,7 @@ public class PosterApp
 
         return cartItems;
     }
-
+    [HttpPost]
     private static void ClearCart(int userId)
     {
         using (var connection = new SqlConnection(ConnectionString))
@@ -269,7 +270,7 @@ public class PosterApp
 
         Console.WriteLine("Cart cleared.");
     }
-
+    [HttpPost]
     private static bool CheckProductInCart(int productId, int userId)
     {
         using (var connection = new SqlConnection(ConnectionString))
@@ -285,7 +286,7 @@ public class PosterApp
             }
         }
     }
-
+    [HttpPost]
     private static void UpdateCartItemQuantity(int productId, int userId, int quantity)
     {
         using (var connection = new SqlConnection(ConnectionString))
@@ -301,7 +302,7 @@ public class PosterApp
             }
         }
     }
-
+    [HttpPost]
     private static void GetFilteredProducts(decimal minPrice, decimal maxPrice, string category, int year)
     {
         using (var connection = new SqlConnection(ConnectionString))
@@ -355,4 +356,6 @@ public class PosterApp
         }
     }
 }
+
+
 

@@ -11,18 +11,12 @@ namespace Shops
         {
 
         }
-        public DbSet<Typee> types { get; set; }
+        public DbSet<Models.Type> types { get; set; }
         public DbSet<Role> roles { get; set; }
         public DbSet<ProductsInBasket> productsInBaskets { get; set; }
         public DbSet<Product> product { get; set; }
         public DbSet<Basket> baskets { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
 
         }
 
     }
-
-}

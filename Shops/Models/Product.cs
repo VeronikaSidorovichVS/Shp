@@ -1,9 +1,11 @@
 ﻿using System;
 using Newtonsoft.Json;
-namespace Shops.Models
-{
-    public class Characteristic
+using System.ComponentModel.DataAnnotations;
+namespace Shops.Models { 
+public class Characteristic
     {
+        [Key]
+        
         public string Name { get; set; }
         public string Value { get; set; }
     }
@@ -26,6 +28,7 @@ namespace Shops.Models
         public string Img { get; set; }
         public string Brand { get; set; }
         public Characteristic[] Characteristics { get; set; }
+        public List<User> ProductsInBasket { get; set; }
     }
     public class Program
     {

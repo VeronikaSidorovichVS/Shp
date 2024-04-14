@@ -1,12 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Shops;
+using Shops.Models;
 using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 
 
 //register

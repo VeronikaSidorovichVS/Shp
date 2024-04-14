@@ -1,10 +1,13 @@
-﻿namespace Shops.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Shops.Models
 {
     public class Type
     {
-        public Guid typeId { get; set; }
+        [Key]
+        public int typeId { get; set; }
         public string typeName { get; set; } = null!;
-        public List<Product> products { get; set; } = [];
-
+        public List<Product> products { get; set; } 
+        
     }
 }

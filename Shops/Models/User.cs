@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shops.Models
 {
     public class User
     {
+        [Key]
         public int userId { get; set; }
         public string email { get; set; } = null!;
         public string password{ get; set; }

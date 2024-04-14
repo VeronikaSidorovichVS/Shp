@@ -34,14 +34,14 @@ namespace Shops.Login
 
     }
 }
-public class Proverkd
-{
-    static void Main()
-    {
-        EmailAdress email1 = new EmailAdress("john@example.com");
-        Console.WriteLine(email1.ToString()); // Выводит "john@example.com"
+//public class Proverka
+//{
+//    static void Main()
+//    {
+//        EmailAdress email1 = new EmailAdress("john@example.com");
+//        Console.WriteLine(email1.ToString()); 
 
-        EmailAdress email2 = new EmailAdress("Jane Doe", "jane@example.com");
-        Console.WriteLine(email2.ToString()); // Выводит "Jane Doe <jane@example.com>"
-    }
-}
+//        EmailAdress email2 = new EmailAdress("Jane Doe", "jane@example.com");
+//        Console.WriteLine(email2.ToString()); 
+//    }
+//}
