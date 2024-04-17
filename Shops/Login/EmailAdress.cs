@@ -1,5 +1,4 @@
 ﻿
-
 using Shops.Login;
 
 namespace Shops.Login

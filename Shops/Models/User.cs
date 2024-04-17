@@ -8,7 +8,9 @@ namespace Shops.Models
         [Key]
         public int userId { get; set; }
         public string email { get; set; } = null!;
+        
         public string password{ get; set; }
+     
         public string avatar { get; set; } = null!;
         public string userName { get; set; } = null!;
         public string roleName { get; set; } = null!;

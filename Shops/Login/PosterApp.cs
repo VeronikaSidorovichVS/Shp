@@ -8,36 +8,10 @@ public class PosterApp
 {
     private const string ConnectionString = "Data Source=(local);Initial Catalog=PosterSQL;Integrated Security=True";
 
-    public static void Main()
-    {
-        Console.WriteLine("Welcome to PosterApp!");
 
-        while (true)
-        {
-            Console.WriteLine("1. Sign up");
-            Console.WriteLine("2. Log in");
-            Console.WriteLine("3. Exit");
-            Console.Write("Please enter your choice: ");
-            var choice = Console.ReadLine();
-
-            switch (choice)
-            {
-                case "1":
-                    SignUp();
-                    break;
-                case "2":
-                    Login();
-                    break;
-                case "3":
-                    return;
-                default:
-                    Console.WriteLine("Invalid choice. Please try again.");
-                    break;
-            }
-        }
-    }
 
     [HttpPost]
+    
     private static void SignUp()
     {
         Console.Write("Enter your email: ");
@@ -70,6 +44,7 @@ public class PosterApp
     }
 
     [HttpPost]
+    [Route("Registration")]
     private static void Login()
     {
         Console.Write("Enter your email: ");
@@ -89,7 +64,7 @@ public class PosterApp
         // Proceed to the website or perform other actions
     }
 
-    [HttpPost]
+    
     private static bool CheckEmailExists(string email)
     {
         using (var connection = new SqlConnection(ConnectionString))
