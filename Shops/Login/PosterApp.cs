@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Shops.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 public class PosterApp
 {
